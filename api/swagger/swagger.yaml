@@ -1,0 +1,149 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Gestion des DOE
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /materiau:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: materiauCtl
+    post:
+      summary: ajout d'un materiau
+      # used as the method name of the controller
+      operationId: postMateriau
+      consumes:
+        - application/json
+      parameters:
+        - name: materiau
+          in: body
+          required: true
+          schema:
+               $ref: '#/definitions/Materiau'        
+      responses:
+        "201":
+          description: Cree
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /materiau/{Id}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: materiauCtl  
+    get:
+      description: retourne les caractéristiques d'un materiau
+      # used as the method name of the controller
+      operationId: getMateriauById
+      parameters:
+        - name: Id
+          in: path
+          description: Identifiant du materiau
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Materiau"
+        "404":
+          description: Materiau non trouve
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      description: modifie les caractéristiques d'un materiau
+      # used as the method name of the controller
+      operationId: putMateriauById
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: Id
+          in: path
+          description: Identifiant du materiau
+          required: true
+          type: string
+        - name: materiau
+          in: body
+          required: true
+          schema:
+               $ref: '#/definitions/Materiau' 
+      responses:
+        "200":
+          description: Success
+        "404":
+          description: Materiau non trouve
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      description: supprime un materiau
+      # used as the method name of the controller
+      operationId: delMateriauById
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: Id
+          in: path
+          description: Identifiant du materiau
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+        "404":
+          description: Materiau non trouve
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Materiau:
+    required:
+      - Categorie
+      - Marque
+      - Reference
+    properties:
+      Id :
+        type : string
+      Categorie:
+        type: string
+      Marque:
+        type: string
+      Reference:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
