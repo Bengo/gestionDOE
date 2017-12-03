@@ -122,6 +122,29 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /doe:
+# binds a127 app logic to a route
+    x-swagger-router-controller: doeCtl  
+    get:
+      description: retourne les caractéristique d'un doe
+      # used as the method name of the controller
+      operationId: getDOE
+      produces:
+        - text/plain
+        - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/DOE"
+        "404":
+          description: doe non trouve
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -140,6 +163,20 @@ definitions:
         type: string
       Reference:
         type: string
+  DOE:
+    properties:
+      Date :
+        type : string
+      Titre:
+        type: string
+      MOE:
+        type: string
+      MOA:
+        type: string
+      MateriauxList:
+        type: array
+        items: 
+          $ref: "#/definitions/Materiau"
   ErrorResponse:
     required:
       - message
