@@ -14,9 +14,9 @@ var util = require('util');
 var PDFDocument = require('pdfkit');
 var fs = require('fs');
 var path = require('path');
-var pdfFillForm = require('pdf-fill-form');
 var Docxtemplater = require('docxtemplater');
 var JSZip = require('jszip');
+const { exec } = require('child_process');
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
 
@@ -215,8 +215,31 @@ function getDOE(req, res) {
                .generate({type: 'nodebuffer'});
   
   // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-  fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+
+  let writeStream = fs.createWriteStream('output.docx');
+
+  writeStream.write(buf); 
+
+  // the finish event is emitted when all data has been flushed from the stream
+  writeStream.on('finish', () => {  
+    exec('libreoffice --headless --convert-to odt output.docx  && libreoffice --headless --convert-to pdf --outdir api/data/ output.odt && rm output.odt && rm output.docx', 
+    (err, stdout, stderr) => {
+      if (err) {
+        // node couldn't execute the command
+        return;
+      }
+    
+      // the *entire* stdout and stderr (buffered)
+      console.log(`stdout: ${stdout}`);
+      console.log(`stderr: ${stderr}`);
+    })
+  });
+
+  // close the stream
+  writeStream.end();
+
   
+
 
   res.status(200).send();
 }
