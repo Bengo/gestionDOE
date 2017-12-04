@@ -51,21 +51,146 @@ function getDOE(req, res) {
   //set the templateVariables
   doc.setData({
       date: 'FEVRIER 2017',
+      titres:[
+        {ligne:'CONSTRUCTION D\'UNE IME'},
+        {ligne:'Site de Kerlouen'},
+        {ligne:'LANDERNAU'}
+      ],
+      nommoa: 'AIGUILLON CONSTRUCTION',
+      adressemoa: '171 rue du vern',
+      villemoa: '35200 - RENNES',
+      nommoe: 'AUA STRUCTURES',
+      adressemoe: '71, rue des fdsfs',
+      villemoe : '29200 - QUIMPER',
+      lot: 'LOT12 - REVETEMENTS DE SOLS',
       materiaux: [
         {
           categorie: 'CHAPE',
           marque: 'SIKA',
-          reference: 'Sikaviscochape'
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: 'SIKA',
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: 'SIKA',
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: 'SIKA',
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: 'SIKA',
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: 'SIKA',
+          references:[{
+            ref: 'Sikaviscochape'}
+          ]
         },
         {
           categorie: 'CHAPE',
           marque: '',
-          reference: 'Sable et ciment'
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },
+        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
+        },        {
+          categorie: 'CHAPE',
+          marque: '',
+          references: [
+            {ref: 'Sable'},
+            {ref: 'ciment'}
+          ]
         },
         {
           categorie: 'ETANCHEITE sous carrelage',
           marque: 'PAREXLANKO',
-          reference: 'Lanko 588'
+          references: [
+            {ref: 'Lanko 588'}
+          ]
         }
       ]
   });
